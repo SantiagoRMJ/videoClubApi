@@ -1,23 +1,16 @@
 const Movie = require('./model');
 
 
-module.exports.getAllMovies = async (req, res) =>{
-    const movies = await Peliculas.find({});
-    console.log('están buscando películas');
-    res.json(movies);
-    console.log(movies)
-    return movies;
-}
+
 module.exports.getOneMovie = async(req,res)=>{ 
-    req.query;   
-    const movie = await res.json(Peliculas.find({titulo}));
-    console.log(movie);
-    return movie;
+    const movieId = req.params._id  
+    const movie = await Peliculas.findOne({_id: movieId});
+    res.json(movie)
 }
-module.exports.searchForQuery = async (res, req)=>{
+module.exports.searchForQuery = async (req, res)=>{
     const query = {}
-    if(req.params.titulo) query.titulo = req.params.titulo;
-    if(req.params.director) query.director = req.params.director;
+    if(req.query.titulo) query.titulo = req.query.titulo;
+    if(req.query.director) query.director = req.query.director;
     const data = await Peliculas.find(query);
     res.json(data);
 }

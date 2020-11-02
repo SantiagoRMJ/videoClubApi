@@ -1,10 +1,21 @@
 
-const order = require('./model');
-const order = await order.find({}).populate('userId')
+const Order = require('./model');
+//const order = order.find({}).populate('userId')
 
-module.exports.newOrder = (req, res) =>{
-    const userId = req.body;
-    const movieId = req.body;
-    let pedido = new Order(user._id, movie._id, fecha, fecha +7);
+module.exports.newOrder = async (req, res) =>{
+    if(!req.body.userId || !req.body.movieId) return ({error: 'no existe el id'})
+    const userId = req.body.userId;
+    const movieId = req.body.userId;
+    const fecha = new Date();
+    const fechaDevolucion = new Date()
+    fechaDevolucion.setDate(fechaDevolucion.getDate() + 7)  
+    let pedido = new Order(user._id, movie._id, fecha, fechaDevolucion);
+    await pedido.save();
     console.log('se ha creado un pedido');
+    res.json(pedido);
 };
+/*
+module.exports.viewAllOrders = (req, res)  =>{
+    const
+}
+*/

@@ -3,7 +3,7 @@ const Schema = module.exports = mongoose.Schema;
 
 module.exports = mongoose.model('Order', new Schema({
     user_id:{
-        type: ObjectId, ref: 'User',
+        type: mongoose.Types.ObjectId, ref: 'User',
         required: true
     },
     movie_id:{

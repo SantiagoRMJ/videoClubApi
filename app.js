@@ -1,12 +1,14 @@
 const express = require('express');
-const routerMovie = require('./components/movie/router')
+const routerMovie = require('./components/movie/router');
 const routerUser = require('./components/user/router');
+const routerOrders = require('./components/order/router');
 //const jwt = require('jsonwebtoken')
 
 const app = express();
 app.use(express.json());
 app.use('/movie', routerMovie);
 app.use('/user', routerUser);
+
 const mongoose = require("mongoose");
 
 mongoose.connect('mongodb://localhost:27017/db-videoclub',{
