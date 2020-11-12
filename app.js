@@ -1,5 +1,5 @@
 const express = require('express');
-const routerMovie = require('./components/movie/router');
+const routerMovie = require('./components/movie/router.js');
 const routerUser = require('./components/user/router');
 const routerOrders = require('./components/order/router');
 //const jwt = require('jsonwebtoken')
@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use('/movie', routerMovie);
 app.use('/user', routerUser);
+app.use('/pedidos', routerOrders)
 
 const mongoose = require("mongoose");
 
@@ -36,4 +37,5 @@ const auth = (req, res, next) =>{
     next()
 }
 */
-app.listen(4001, ()=> console.log('Servidor levantado en el puerto 4000'));
+const PORT = process.env.PORT || 4000
+app.listen(PORT, ()=> console.log('Servidor levantado en' + PORT));

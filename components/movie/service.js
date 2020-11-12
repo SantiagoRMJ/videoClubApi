@@ -12,6 +12,7 @@ module.exports.searchForQuery = async (req, res)=>{
     if(req.query.titulo) query.titulo = req.query.titulo;
     if(req.query.director) query.director = req.query.director;
     const data = await Peliculas.find(query);
+    console.log(data)
     res.json(data);
 }
 module.exports.postMovie = async (req,res)=>{
@@ -19,7 +20,6 @@ module.exports.postMovie = async (req,res)=>{
     await peliculas.save();   
     console.log('se ha añadido una nueva pelicula')
     res.json(peliculas);
-
 };
 module.exports.changeMovie = async(req,res)=>{
     const movie = await Peliculasdb.findById(req.body._id);
